@@ -5,7 +5,7 @@
     <el-card>
       <img src="../../assets/logo_index.png" alt="">
       <!-- 表单容器 -->
-      <el-form :model="Loginform" :rules="LoginRules">
+      <el-form :model="Loginform" :rules="LoginRules" status-icon>
         <el-form-item prop="mobile">
           <el-input v-model="Loginform.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
@@ -27,6 +27,13 @@
 <script>
 export default {
   data () {
+    const MobileId = (rule, value, callback) => {
+      if (/^1[3-9]\d{9}$/.test(value)) {
+        callback()
+      } else {
+        callback(new Error('手机号格式不正确'))
+      }
+    }
     return {
       Loginform: {
         mobile: '',
@@ -34,7 +41,8 @@ export default {
       },
       LoginRules: {
         mobile: [
-          { required: true, message: '请输入手机号', trigger: 'blur' }
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          { validator: MobileId, trigger: 'blur' }
         ],
         code: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
