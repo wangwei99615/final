@@ -5,11 +5,11 @@
     <el-card>
       <img src="../../assets/logo_index.png" alt="">
       <!-- 表单容器 -->
-      <el-form :model="Loginform">
-        <el-form-item>
+      <el-form :model="Loginform" :rules="LoginRules">
+        <el-form-item prop="mobile">
           <el-input v-model="Loginform.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="code">
           <el-input v-model="Loginform.code" placeholder="请输入验证码" style="width:240px;margin-right:8px"></el-input>
           <el-button>发送验证码</el-button>
         </el-form-item>
@@ -31,6 +31,15 @@ export default {
       Loginform: {
         mobile: '',
         code: ''
+      },
+      LoginRules: {
+        mobile: [
+          { required: true, message: '请输入手机号', trigger: 'blur' }
+        ],
+        code: [
+          { required: true, message: '请输入验证码', trigger: 'blur' },
+          { len: 6, message: '验证码格式不正确', trigger: 'blur' }
+        ]
       }
     }
   }
