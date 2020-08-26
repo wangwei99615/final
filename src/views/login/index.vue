@@ -55,6 +55,7 @@ export default {
     //   登录绑定点击事件，点击上传form表单进行整体校验
     LoginUp () {
       //   console.log(this.$refs)
+      //   获取整个表单
       this.$refs.LoginForm.validate((valid) => {
         if (valid) {
           console.log('ok')
