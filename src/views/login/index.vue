@@ -5,19 +5,19 @@
     <el-card>
       <img src="../../assets/logo_index.png" alt="">
       <!-- 表单容器 -->
-      <el-form :model="Loginform" :rules="LoginRules" status-icon>
+      <el-form ref="LoginForm" :model="LoginData" :rules="LoginRules" status-icon>
         <el-form-item prop="mobile">
-          <el-input v-model="Loginform.mobile" placeholder="请输入手机号"></el-input>
+          <el-input v-model="LoginData.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
         <el-form-item prop="code">
-          <el-input v-model="Loginform.code" placeholder="请输入验证码" style="width:240px;margin-right:8px"></el-input>
+          <el-input v-model="LoginData.code" placeholder="请输入验证码" style="width:240px;margin-right:8px"></el-input>
           <el-button>发送验证码</el-button>
         </el-form-item>
         <el-form-item>
           <el-checkbox :value='true'>我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" style="width:100%">登录</el-button>
+          <el-button type="primary" @click="LoginUp" style="width:100%">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -35,7 +35,7 @@ export default {
       }
     }
     return {
-      Loginform: {
+      LoginData: {
         mobile: '',
         code: ''
       },
@@ -49,6 +49,17 @@ export default {
           { len: 6, message: '验证码格式不正确', trigger: 'blur' }
         ]
       }
+    }
+  },
+  methods: {
+    //   登录绑定点击事件，点击上传form表单进行整体校验
+    LoginUp () {
+      //   console.log(this.$refs)
+      this.$refs.LoginForm.validate((valid) => {
+        if (valid) {
+          console.log('ok')
+        }
+      })
     }
   }
 }
