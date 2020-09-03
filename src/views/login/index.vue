@@ -58,7 +58,15 @@ export default {
       //   获取整个表单
       this.$refs.LoginForm.validate((valid) => {
         if (valid) {
-          console.log('ok')
+          // 获取到表单信息
+          //   上传数据，成功 .then 失败 .catch
+          this.$http.post('authorizations', this.LoginData).then(res => {
+            //   上传数据成功之后跳转到首页
+            this.$router.push('/')
+          }).catch(() => {
+            //   上传数据失败后的提示
+            this.$message.error('手机号或验证码错误')
+          })
         }
       })
     }
