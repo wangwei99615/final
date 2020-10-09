@@ -1,12 +1,11 @@
 <template>
   <div class='container'>
     <el-container class="home-container">
-      <el-aside width="200px">
+      <el-aside :width="isOpen? '200px':'64px'">
         <!-- logo -->
-        <div class="HeadLogo">
-        </div>
+        <div class="HeadLogo" :class="{littelHeadLogo:!isOpen}"></div>
         <!-- 导航菜单 -->
-        <el-menu default-active="1" background-color="#002033" text-color="#fff" active-text-color="#ffd04b" style="border-right:none">
+        <el-menu default-active="1" background-color="#002033" text-color="#fff" active-text-color="#ffd04b" style="border-right:none" :collapse="!isOpen" :collapse-transition="false">
           <el-menu-item index="1">
             <i class="el-icon-s-home"></i>
             <span slot="title">首页</span>
@@ -40,7 +39,7 @@
       <el-container>
         <el-header>
           <!-- 图标 -->
-          <span class="el-icon-s-fold"></span>
+          <span class="el-icon-s-fold" @click="bigORsmall"></span>
           <!-- 文本 -->
           <span class="text">江苏传智播客科技教育有限公司</span>
           <!-- 下拉菜单 -->
@@ -67,6 +66,16 @@
 
 <script>
 export default {
+  data () {
+    return {
+      isOpen: true
+    }
+  },
+  methods: {
+    bigORsmall () {
+      this.isOpen = !this.isOpen
+    }
+  }
 }
 </script>
 
@@ -84,6 +93,10 @@ export default {
       height: 60px;
       background: #002244 url(../../assets/logo_admin.png) no-repeat center /
         140px auto;
+    }
+    .littelHeadLogo {
+      background-image: url(../../assets/logo_admin_01.png);
+      background-size: 36px auto;
     }
   }
   .el-header {
