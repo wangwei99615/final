@@ -1,7 +1,12 @@
 <template>
   <div class='container'>
     <el-container class="home-container">
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <!-- logo -->
+        <div class="HeadLogo">
+        </div>
+        <!-- 导航菜单 -->
+      </el-aside>
       <el-container>
         <el-header>
           <!-- 图标 -->
@@ -41,6 +46,12 @@ export default {
   left: 0;
   .el-aside {
     background-color: #002033;
+    .HeadLogo {
+      width: 100%;
+      height: 60px;
+      background: #002244 url(../../assets/logo_admin.png) no-repeat center /
+        140px auto;
+    }
   }
   .el-header {
     border-bottom: 1px solid #ddd;
