@@ -56,7 +56,10 @@
             </el-dropdown-menu>
           </el-dropdown>
         </el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <!-- 内容 -->
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>

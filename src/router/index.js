@@ -5,6 +5,7 @@ import Vue from 'vue'
 // 导入登陆组件
 import Login from '@/views/login'
 import Home from '@/views/home'
+import Welcome from '@/views/welcome'
 
 // 使用vue-router
 Vue.use(VueRouter)
@@ -16,9 +17,13 @@ const router = new VueRouter({
     path: '/login',
     component: Login
   }, {
-    //   登录组件
+    //   首页组件
     path: '/',
-    component: Home
+    component: Home,
+    children: [{
+      path: '/',
+      component: Welcome
+    }]
   }]
 })
 
